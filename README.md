@@ -1,5 +1,9 @@
 # STORE-PARTS-EXERCISE
 
+Hello there!
+If you're here, chances are somebody at Mozantech thinks you're talented.
+This exercise is part of our recruitment process. 
+It is designed to help us understand some of your competencies before moving forward.
 ## Goal
 
 We have a few requirements for you to follow but we want you to build this with your own style and ideas.
@@ -14,6 +18,7 @@ What you must have:
 - The possibility to order by price implemented on the SPA side
 - A way to request different parts by type
 - The ability to request different search queries on typing
+- Create a public repo to share your work with us
 - An accurate README to show us how to run your app
 - You should not change this service
 
