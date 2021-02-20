@@ -2,9 +2,10 @@
 
 ## Goal
 
-The main goal of the exercise is to build a Single Page Application to extend this super robust API. 
-ᕕ༼ ຈل͜ຈ༽ ᕗ 
 We have a few requirements for you to follow but we want you to build this with your own style and ideas.
+The main goal of the exercise is to build a Single Page Application to extend this super robust API. 
+
+ᕕ༼ ຈل͜ຈ༽ ᕗ 
 
 What you must have:
 
