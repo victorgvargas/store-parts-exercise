@@ -5,6 +5,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatListModule } from '@angular/material/list';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -12,8 +13,9 @@ import { MatListModule } from '@angular/material/list';
   ],
   imports: [
     CommonModule,
-    MatListModule,
     SharedModule,
+    MatListModule,
+    FlexLayoutModule,
     HomeRoutingModule
   ]
 })
