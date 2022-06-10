@@ -4,10 +4,12 @@ import { ListItemComponent } from './components/list-item/list-item.component';
 import { MatListModule } from '@angular/material/list';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDividerModule } from '@angular/material/divider';
+import { ActionsToolbarComponent } from './components/actions-toolbar/actions-toolbar.component';
 
 @NgModule({
   declarations: [
-    ListItemComponent
+    ListItemComponent,
+    ActionsToolbarComponent
   ],
   imports: [
     CommonModule,
@@ -16,7 +18,8 @@ import { MatDividerModule } from '@angular/material/divider';
     FlexLayoutModule,
   ],
   exports: [
-    ListItemComponent
+    ListItemComponent,
+    ActionsToolbarComponent
   ]
 })
 export class SharedModule { }
