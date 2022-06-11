@@ -1,4 +1,13 @@
 <h1>Store Parts</h1>
-<mat-nav-list>
-    <app-list-item *ngFor="let part of parts" [items]="stringifyPart(part)"></app-list-item>
-</mat-nav-list>
+
+<mat-spinner *ngIf="loading"></mat-spinner>
+
+<ng-container *ngIf="!loading">
+	<app-actions-toolbar [data]="parts"></app-actions-toolbar>
+	<mat-nav-list>
+		<app-list-item
+			*ngFor="let part of parts"
+			[items]="stringifyPart(part)"
+		></app-list-item>
+	</mat-nav-list>
+</ng-container>

@@ -1,1 +1,28 @@
-<p>actions-toolbar works!</p>
+<form
+	[formGroup]="actionsForm"
+	fxLayout="row"
+	fxLayoutAlign="space-around center"
+>
+	<mat-form-field>
+		<mat-label>Search...</mat-label>
+		<input
+			matInput
+			formControlName="searchTerm"
+			(change)="searchQuery($event)"
+		/>
+	</mat-form-field>
+
+	<mat-form-field>
+		<mat-label>Filter by</mat-label>
+		<mat-select formControlName="filterBy">
+			<mat-option *ngFor="let type of extractedTypes" [value]="type">{{
+				type
+			}}</mat-option>
+		</mat-select>
+	</mat-form-field>
+
+	<mat-form-field>
+		<mat-label></mat-label>
+		<input matInput formControlName="orderBy" />
+	</mat-form-field>
+</form>
