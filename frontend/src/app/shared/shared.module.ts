@@ -8,10 +8,12 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
-	declarations: [ListItemComponent, ActionsToolbarComponent],
+	declarations: [ListItemComponent, ActionsToolbarComponent, SpinnerComponent],
 	imports: [
 		CommonModule,
 		ReactiveFormsModule,
@@ -20,8 +22,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 		MatFormFieldModule,
 		MatInputModule,
 		MatSelectModule,
+		MatProgressSpinnerModule,
 		FlexLayoutModule,
 	],
-	exports: [ListItemComponent, ActionsToolbarComponent],
+	exports: [ListItemComponent, ActionsToolbarComponent, SpinnerComponent],
 })
 export class SharedModule {}
