@@ -5,10 +5,7 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	OnDestroy,
 } from '@angular/core';
-import { tap } from 'rxjs';
-import { LoadingService } from 'src/app/core/services/loading.service';
 import { SubSink } from 'subsink';
 import { Part } from '../../models/part.model';
 
@@ -26,7 +23,7 @@ export class ActionsToolbarComponent implements OnInit {
 	extractedTypes: string[] = [];
 	subs = new SubSink();
 
-	constructor(private _loadingService: LoadingService) {}
+	constructor() {}
 
 	ngOnInit(): void {
 		this._extractTypes();
@@ -56,15 +53,13 @@ export class ActionsToolbarComponent implements OnInit {
 
 	searchQuery(event: Event): void {
 		this.queryResult$.emit(
-			this.data!.map((element: Part) => Object.values(element))
-				.reduce((acc, curr) => acc.concat(curr))
-				.filter(
-					(element: string) =>
-						element
-							.toLowerCase()
-							.indexOf((event.target as HTMLInputElement).value.toLowerCase()) >
-						-1
-				)
+			this.data!.filter(
+				(element: Part) =>
+					element.name
+						.toLowerCase()
+						.indexOf((event.target as HTMLInputElement).value.toLowerCase()) >
+					-1
+			)
 		);
 	}
 
