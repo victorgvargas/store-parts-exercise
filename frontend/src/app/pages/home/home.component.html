@@ -6,10 +6,11 @@
 	<app-actions-toolbar
 		[data]="parts"
 		(orderedData$)="updateData($event)"
+		(filteredData$)="updateData($event)"
 	></app-actions-toolbar>
 	<mat-nav-list>
 		<app-list-item
-			*ngFor="let part of parts"
+			*ngFor="let part of manipulatedParts"
 			[items]="stringifyPart(part)"
 		></app-list-item>
 	</mat-nav-list>

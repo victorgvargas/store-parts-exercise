@@ -12,6 +12,7 @@ import { SubSink } from 'subsink';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 	parts: Part[] = [];
+	manipulatedParts: Part[] = [];
 	loading = false;
 	subs = new SubSink();
 
@@ -37,6 +38,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 				.getParts()
 				.pipe(
 					tap((parts) => (this.parts = parts)),
+					tap(() => (this.manipulatedParts = [...this.parts])),
 					finalize(() => this._loadingService.hideLoading())
 				)
 				.subscribe()
@@ -52,6 +54,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 	}
 
 	updateData(data: Part[]): void {
-		this.parts = data;
+		this.manipulatedParts = data;
 	}
 }

@@ -5,9 +5,11 @@ import {
 	Input,
 	Output,
 	EventEmitter,
+	OnDestroy,
 } from '@angular/core';
 import { tap } from 'rxjs';
 import { LoadingService } from 'src/app/core/services/loading.service';
+import { SubSink } from 'subsink';
 import { Part } from '../../models/part.model';
 
 @Component({
@@ -22,17 +24,12 @@ export class ActionsToolbarComponent implements OnInit {
 	@Output() filteredData$ = new EventEmitter<Part[]>();
 	@Output() queryResult$ = new EventEmitter<Part[]>();
 	extractedTypes: string[] = [];
+	subs = new SubSink();
 
 	constructor(private _loadingService: LoadingService) {}
 
 	ngOnInit(): void {
-		this._loadingService.loading$
-			.pipe(
-				tap((loading) => {
-					if (loading) this._extractTypes();
-				})
-			)
-			.subscribe();
+		this._extractTypes();
 	}
 
 	sortData(orderBy: 'asc' | 'desc'): void {
@@ -51,11 +48,11 @@ export class ActionsToolbarComponent implements OnInit {
 		}
 	}
 
-	// filterData(): void {
-	// 	this.$filteredData.emit(
-	// 		this.data!.filter((element: Part) => this.filterBy! === element.type)
-	// 	);
-	// }
+	filterData(filterBy: string): void {
+		this.filteredData$.emit(
+			this.data!.filter((element: Part) => filterBy === element.type)
+		);
+	}
 
 	searchQuery(event: Event): void {
 		this.queryResult$.emit(
