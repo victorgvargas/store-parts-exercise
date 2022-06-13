@@ -1,5 +1,5 @@
 export interface Part {
-    name: string;
-    price: RegExp;
-    type: string;
+	name: string;
+	price: string;
+	type: string;
 }

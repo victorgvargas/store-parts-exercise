@@ -6,7 +6,6 @@ import {
 	Output,
 	EventEmitter,
 } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { tap } from 'rxjs';
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { Part } from '../../models/part.model';
@@ -23,38 +22,34 @@ export class ActionsToolbarComponent implements OnInit {
 	@Output() filteredData$ = new EventEmitter<Part[]>();
 	@Output() queryResult$ = new EventEmitter<Part[]>();
 	extractedTypes: string[] = [];
-	actionsForm = this._fb.group({
-		searchTerm: [''],
-		orderBy: [''],
-		filterBy: [''],
-	});
 
-	constructor(
-		private _fb: FormBuilder,
-		private _loadingService: LoadingService
-	) {}
+	constructor(private _loadingService: LoadingService) {}
 
 	ngOnInit(): void {
 		this._loadingService.loading$
 			.pipe(
 				tap((loading) => {
-					if (loading) this.extractTypes();
+					if (loading) this._extractTypes();
 				})
 			)
 			.subscribe();
 	}
 
-	// sortData(): void {
-	// 	if (this.orderBy === 'asc') {
-	// 		this.$orderedData.emit(
-	// 			this.data!.sort((a, b) => (a.price < b.price ? 1 : -1))
-	// 		);
-	// 	} else {
-	// 		this.$orderedData.emit(
-	// 			this.data!.sort((a, b) => (a.price < b.price ? -1 : 1))
-	// 		);
-	// 	}
-	// }
+	sortData(orderBy: 'asc' | 'desc'): void {
+		if (orderBy === 'asc') {
+			this.orderedData$.emit(
+				this.data!.sort((a, b) =>
+					this._priceToNumber(a.price) < this._priceToNumber(b.price) ? -1 : 1
+				)
+			);
+		} else {
+			this.orderedData$.emit(
+				this.data!.sort((a, b) =>
+					this._priceToNumber(a.price) < this._priceToNumber(b.price) ? 1 : -1
+				)
+			);
+		}
+	}
 
 	// filterData(): void {
 	// 	this.$filteredData.emit(
@@ -76,10 +71,16 @@ export class ActionsToolbarComponent implements OnInit {
 		);
 	}
 
-	extractTypes(): void {
+	private _extractTypes(): void {
 		const allTypes: string[] = [];
 
 		this.data!.forEach((element) => allTypes.push(element.type));
 		this.extractedTypes = Array.from(new Set(allTypes));
+	}
+
+	private _priceToNumber(price: string): number {
+		if (price.match(/[0-9]*\.[0-9]{2}\$/)) {
+			return parseFloat(price.replace('$', ''));
+		} else throw new Error('Malformed price input!');
 	}
 }

@@ -3,7 +3,10 @@
 <app-spinner *ngIf="loading"></app-spinner>
 
 <ng-container *ngIf="!loading">
-	<app-actions-toolbar [data]="parts"></app-actions-toolbar>
+	<app-actions-toolbar
+		[data]="parts"
+		(orderedData$)="updateData($event)"
+	></app-actions-toolbar>
 	<mat-nav-list>
 		<app-list-item
 			*ngFor="let part of parts"

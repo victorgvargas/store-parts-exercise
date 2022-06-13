@@ -50,4 +50,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 	stringifyPart(part: Part): string[] {
 		return Object.values(part);
 	}
+
+	updateData(data: Part[]): void {
+		this.parts = data;
+	}
 }

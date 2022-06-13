@@ -1,20 +1,12 @@
-<form
-	[formGroup]="actionsForm"
-	fxLayout="row"
-	fxLayoutAlign="space-around center"
->
+<form fxLayout="row" fxLayoutAlign="space-around center">
 	<mat-form-field>
 		<mat-label>Search...</mat-label>
-		<input
-			matInput
-			formControlName="searchTerm"
-			(change)="searchQuery($event)"
-		/>
+		<input matInput (change)="searchQuery($event)" />
 	</mat-form-field>
 
 	<mat-form-field>
 		<mat-label>Filter by</mat-label>
-		<mat-select formControlName="filterBy">
+		<mat-select>
 			<mat-option *ngFor="let type of extractedTypes" [value]="type">{{
 				type
 			}}</mat-option>
@@ -22,7 +14,14 @@
 	</mat-form-field>
 
 	<mat-form-field>
-		<mat-label></mat-label>
-		<input matInput formControlName="orderBy" />
+		<mat-label>Sort by</mat-label>
+		<mat-select>
+			<mat-option (click)="sortData('asc')"
+				>Price order <mat-icon>arrow_upward</mat-icon></mat-option
+			>
+			<mat-option (click)="sortData('desc')"
+				>Price order <mat-icon>arrow_downward</mat-icon></mat-option
+			>
+		</mat-select>
 	</mat-form-field>
 </form>
