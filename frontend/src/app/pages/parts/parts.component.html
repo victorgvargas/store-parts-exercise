@@ -1,13 +1,15 @@
 <app-spinner *ngIf="loading"></app-spinner>
 
-<section
-	fxLayout="row wrap"
-	fxLayoutAlign="space-around center"
-	*ngIf="!loading"
->
-	<mat-card class="card" *ngFor="let part of parts">
+<section fxLayout="row wrap" fxLayoutAlign="start center" *ngIf="!loading">
+	<mat-card
+		fxFlex="20"
+		fxLayout="column"
+		fxLayoutAlign="center center"
+		[style.height]="'10rem'"
+		*ngFor="let part of parts"
+	>
 		<mat-card-title>{{ part.name }}</mat-card-title>
-		<mat-card-content>{{ part.type }}</mat-card-content>
+		<mat-card-subtitle>{{ part.type }}</mat-card-subtitle>
 		<mat-card-footer>{{ part.price }}</mat-card-footer>
 	</mat-card>
 </section>
