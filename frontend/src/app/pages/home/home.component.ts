@@ -24,10 +24,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 	ngOnInit(): void {
 		this.subs.add(
 			this._loadingService.loading$
-				.pipe(
-					tap(console.log),
-					tap((loading) => (this.loading = loading))
-				)
+				.pipe(tap((loading) => (this.loading = loading)))
 				.subscribe()
 		);
 

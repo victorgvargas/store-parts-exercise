@@ -1,1 +1,13 @@
-<p>parts works!</p>
+<app-spinner *ngIf="loading"></app-spinner>
+
+<section
+	fxLayout="row wrap"
+	fxLayoutAlign="space-around center"
+	*ngIf="!loading"
+>
+	<mat-card class="card" *ngFor="let part of parts">
+		<mat-card-title>{{ part.name }}</mat-card-title>
+		<mat-card-content>{{ part.type }}</mat-card-content>
+		<mat-card-footer>{{ part.price }}</mat-card-footer>
+	</mat-card>
+</section>

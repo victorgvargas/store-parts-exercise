@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
 	declarations: [HomeComponent],
@@ -16,6 +17,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 		MatListModule,
 		MatProgressSpinnerModule,
 		FlexLayoutModule,
+		RouterModule,
 		HomeRoutingModule,
 	],
 })
